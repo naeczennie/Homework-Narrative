@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerDialogue : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerDialogue : MonoBehaviour
     private GameObject _talkPanel;
     private TextMeshProUGUI _talkText;
     private int _talkIndex = 0;
+    public string nextLevel = "Scene2";
 
     private void Start()
     {
@@ -59,5 +62,16 @@ public class PlayerDialogue : MonoBehaviour
     {
         dialogue.Clear();
         dialogue.AddRange(newDialogue);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Finish":
+                {
+                    SceneManager.LoadScene(nextLevel);
+                    break;
+                }
+        }
     }
 }
